@@ -1,2 +1,2 @@
-# Shopping-App-
-Software engineering coursework 
+# Website
+Website for myself. 
