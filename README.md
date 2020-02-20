@@ -1,2 +1,1 @@
-# Website
-Website for myself. 
+# Smart Shopping App
