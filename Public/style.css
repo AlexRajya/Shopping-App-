@@ -80,36 +80,9 @@ li .navRight{
   background-color: #4CAF50;
 }
 
-button {
-  color: White;
-  transition: 1.3s;
-}
-
-button {
-	cursor: pointer;
-	height: 20%;
-  background: none;
-  border: none;
-  font: inherit;
-}
-
-footer {
-	color: White;
-	height: 10%;
-	text-align: center;
-	padding: 1%;
-	background: rgba(0, 0, 0, 0.7);
-}
-
-header {
-	color: White;
-	display: flex;
-  justify-content: center;
-  align-items: center;
-	height: 10%;
-	width: 100%;
-	text-align: center;
-	background: rgba(0, 0, 0, 0.7);
+.searchForm{
+	margin-left: 0.3%;
+	text-align: left;
 }
 
 title {
