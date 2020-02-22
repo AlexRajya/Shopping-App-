@@ -35,7 +35,7 @@ window.onload = () => {
 };
 
 function login(){
-  console.log("binnie smells")
+  
 }
 
 function register(){
