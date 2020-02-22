@@ -10,13 +10,30 @@
 
   <body>
     <div class="bg">
+      <div id="Modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span id="close" class="close">&times;</span>
+            <span><h2>Login:</h2><span>
+          </div>
+          <div class="modal-body">
+            <p><label for="uname"><b>Username</b></label></p>
+            <p><input type="text" placeholder="Enter Username" name="uname" required></p>
+
+            <p><label for="psw"><b>Password</b></label></p>
+            <p><input type="password" placeholder="Enter Password" name="psw" required></p>
+
+            <p><button type="submit">Login</button></p>
+          </div>
+        </div>
+      </div>
       <div class = "navbar">
         <ul>
           <li><div class = "navLeft">Shopping App</div></li>
-          <li><div class = "navRight">Offers</div></li>
-          <li><div class = "navRight">Login</div></li>
-          <li><div class = "navRight">Register</div></li>
-          <li><div class = "navRight">Basket</div></li>
+          <li><div class = "navRight" id="offers">Offers</div></li>
+          <li><div class = "navRight" id="login">Login</div></li>
+          <li><div class = "navRight" id="register">Register</div></li>
+          <li><div class = "navRight" id="basket">Basket</div></li>
         </ul>
       </div>
       <div class = "searchForm">

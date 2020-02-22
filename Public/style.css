@@ -129,3 +129,57 @@ a:hover {
   	display: block;
   }
 }
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 10%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 0.0625em solid #888;
+  width: 60%;
+  box-shadow: 0 0.25em 0.5em 0 rgba(0,0,0,0.2),0 0.375em 1.2em 0 rgba(0,0,0,0.19);
+}
+
+.modal-content p{
+	color: Black;
+}
+
+.modal-content h3{
+  color: Black;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-header {
+  padding: 0.125em 1em;
+  background-color: rgb(34, 142, 195);;
+  color: white;
+}
+.modal-header .fill{
+  float: right;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.modal-body {padding: 1em 1em;}
+
+.close{
+	float:right;
+	font-size: 150%;
+	cursor: pointer;
+}
+/* End of modal */
