@@ -41,29 +41,43 @@ h1, h2, h3 {
 
 .navbar{
 	background: rgba(0, 0, 0, 0.7);
-	height: 7%;
 	width: 100%;
+	overflow: hidden;
 }
 
-ul{
-	list-style-type: none;
-	display: inline-flex;
-  justify-content: center;
-  align-items: center;
+ul {
+  list-style-type: none;
+}
+
+li .navLeft{
+	font-size: 150%;
+	height: 10%;
+	float: left;
+	display: block;
+	color: white;
 	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background: rgba(0,0,80,0.8);
 }
 
-ul li {
-	margin-left: 10%;
-	margin-right: 10%;
-	color: White;
-	font-size: 200%;
+li .navRight{
+	font-size: 150%;
+	height: 10%;
+	float: right;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
-.fill:hover,
-.fill:focus {
-	color: Black;
-  box-shadow: inset 0 0 0 2em White;
+.navRight:hover{
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
 }
 
 button {
