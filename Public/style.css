@@ -16,7 +16,7 @@ html, body {
 
 .bg {
 	text-align: center;
-  background-image: url("bg1.jpg");
+  background: rgb(34, 142, 195);
 }
 
 .bg{
@@ -58,7 +58,6 @@ li .navLeft{
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
-	background: rgba(0,0,80,0.8);
 }
 
 li .navRight{
