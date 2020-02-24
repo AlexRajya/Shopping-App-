@@ -65,4 +65,13 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+  //send token to server
+  let id_token = googleUser.getAuthResponse().id_token;
+  const token = {token:id_token};
+  const url = `${window.location.href}login`;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.send(JSON.stringify(token));
 }
