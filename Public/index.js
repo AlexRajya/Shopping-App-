@@ -34,10 +34,35 @@ window.onload = () => {
   document.getElementById('registerButton').addEventListener('click', register);
 };
 
-function login(){
-  
+let currentUser;
+
+async function login(){
+  const response = await fetch('users.txt');
+  const text = await response.text();
+  const users = JSON.parse(text);
+  const loginText = document.getElementById('loginText').value;
+  const passwordText = document.getElementById('passwordText').value;
+  for (let i = 0; i < users.username.length; i += 1) {
+    if (users.username[i] === loginText) {
+      if(users.password[i] === passwordText){
+        console.log("Successful login");
+        currentUser = loginText;
+      }else{
+        console.log("invalid login");
+      }
+    }
+  }
 }
 
 function register(){
 
+}
+
+function onSignIn(googleUser) {
+  console.log("hi");
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }

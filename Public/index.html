@@ -4,11 +4,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="3211205636-imtck5nq3h009s9fq6r9pcao79kbd2if.apps.googleusercontent.com">
     <link href="style.css" rel="stylesheet" title="Default">
     <title>Shopping App</title>
   </head>
 
   <body>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <div class="bg">
       <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -18,10 +21,10 @@
           </div>
           <div class="modal-body">
             <p><label for="uname"><b>Username</b></label></p>
-            <p><input type="text" placeholder="Enter Username" name="uname" required></p>
+            <p><input type="text" id="loginText" placeholder="Enter Username" name="uname" required></p>
 
             <p><label for="psw"><b>Password</b></label></p>
-            <p><input type="password" placeholder="Enter Password" name="psw" required></p>
+            <p><input type="password" id="passwordText" placeholder="Enter Password" name="psw" required></p>
 
             <p><button type="submit" id="loginButton">Login</button></p>
           </div>
@@ -55,6 +58,7 @@
           <li><div class = "navRight" id="login">Login</div></li>
           <li><div class = "navRight" id="register">Register</div></li>
           <li><div class = "navRight" id="basket">Basket</div></li>
+          <li><div class = "navRight"><div class="g-signin2" data-onsuccess="onSignIn"></div></div></li>
         </ul>
       </div>
       <div class = "searchForm">
