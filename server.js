@@ -16,11 +16,11 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/register', (req, res) => {
+app.post('/login', (req, res) => {
   try {
-    fs.writeFileSync('users.txt', JSON.stringify(req.body));
+    fs.writeFileSync('basketData.txt', JSON.stringify(req.body));
     res.sendStatus(200);// OK
-    console.log('saved');
+    console.log(JSON.stringify(req.body));
   } catch (err) {
     res.sendStatus(400);// bad request
   }
