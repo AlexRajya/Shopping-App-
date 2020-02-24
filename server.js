@@ -16,9 +16,9 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/save', (req, res) => {
+app.post('/register', (req, res) => {
   try {
-    fs.writeFileSync('code.txt', JSON.stringify(req.body));
+    fs.writeFileSync('users.txt', JSON.stringify(req.body));
     res.sendStatus(200);// OK
     console.log('saved');
   } catch (err) {
@@ -29,4 +29,15 @@ app.post('/save', (req, res) => {
 // start the server
 server.listen(port, () => {
   console.log('Server started on:', `http://${ip.address()}:${port}`, 'or: http://localhost:8080/');
+});
+
+//create users file with default admin if none exists
+fs.exists('users.txt', function(exists) {
+  if (!exists) {
+    const admin = {
+      username: ['admin'],
+      password: ['12345']
+    };
+    fs.writeFileSync('users.txt', JSON.stringify(admin));
+  }
 });
