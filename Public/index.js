@@ -55,7 +55,7 @@ async function login(){
 }
 
 function register(){
-
+  //todo
 }
 
 function onSignIn(googleUser) {
