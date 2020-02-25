@@ -17,11 +17,8 @@ app.use(bodyParser.json());
 
 app.post('/login', (req, res) => {
   try {
-    const data = fs.readFileSync('basketData.txt', 'utf8')
-
     let userEmail = (req.body).token;
-    console.log(userEmail);
-    //fs.writeFileSync('basketData.txt', JSON.stringify(req.body));
+    loadUser(userEmail);
     res.sendStatus(200);// OK
     //console.log(JSON.stringify(req.body));
   } catch (err) {
@@ -33,6 +30,24 @@ app.post('/login', (req, res) => {
 server.listen(port, () => {
   console.log('Server started on:', `http://${ip.address()}:${port}`, 'or: http://localhost:8080/');
 });
+//server functions
+function loadUser(email){
+  let data = fs.readFileSync('basketData.txt', 'utf8')
+  data = JSON.parse(data);
+  let pos = false;
+  for (let i = 0; i < data.user.length; i += 1) {
+    if (data.user[i] === email) {
+      pos = i;
+    }
+  }
+  if (pos === false){
+    console.log("user not found, appending to DB");
+    data.user.push(email);
+    data.basket.push(["basket:"])
+    fs.writeFileSync('basketData.txt', JSON.stringify(data));
+  }
+  //
+}
 
 //create files with default values if none exists
 fs.exists('users.txt', function(exists) {
@@ -48,8 +63,8 @@ fs.exists('users.txt', function(exists) {
 fs.exists('basketData.txt', function(exists) {
   if (!exists) {
     const baskets = {
-      user: ['id'],
-      basket: ['data']
+      user: ['id','Admin'],
+      basket: [['product codes'],['1232232,231231123,2323442']]
     };
     fs.writeFileSync('basketData.txt', JSON.stringify((baskets)));
   }
