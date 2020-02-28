@@ -1,8 +1,7 @@
 // Initialise
 window.onload = () => {
   document.getElementById('submitButton').addEventListener('click', () => {
-    let results = document.getElementById('results');
-    results.textContent = document.getElementById('searchField').value;//Replace with api result when given API keys
+    search(document.getElementById('searchField').value);
   });
 
   //Login modal listeners
@@ -58,9 +57,31 @@ function register(){
   //todo
 }
 
+async function displayResults(){
+  const response = await fetch('temp.txt');
+  const results = await response.text();
+  let resultObj = JSON.parse(results);
+  let resultArea = document.getElementById('results');
+  resultArea.textContent = JSON.stringify(resultObj.products);
+}
+
+function search(search){
+  const token = {token:search};
+  const url = `${window.location.href}search`;
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+        displayResults();
+    }
+  }
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.send(JSON.stringify(token));
+}
+
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); 
+  console.log('ID: ' + profile.getId());
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
