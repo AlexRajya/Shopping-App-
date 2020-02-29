@@ -3,12 +3,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const http = require('http');
+const hostname = "0.0.0.0";
 const ip = require('ip');
 var bby = require('bestbuy')('lfXY4GpC14duGk4N3uGvGD3d');
 
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "tesco"
+});
+
 // constants
-const port = process.env.PORT || 8080;
-const app = express();
+const port = process.env.PORT || 3000;
+var app = express();
 const server = http.createServer(app);
 
 app.use(express.static(`${__dirname}/public`));
@@ -29,6 +39,14 @@ app.post('/login', (req, res) => {
 
 app.post('/search', (req, res) => {
   try {
+    //con.connect(function(err) {
+   // if (err) throw err;
+   //  con.query("SELECT * FROM products", function (err, result, fields) {
+   // if (err) throw err;
+   //  console.log(result);
+   // });
+//});
+
     let search = (req.body).token;
     bby.products('search='+search,{show:'sku,name,salePrice'}).then(function(data){
       console.log(data);
@@ -41,7 +59,7 @@ app.post('/search', (req, res) => {
 });
 
 // start the server
-server.listen(port, () => {
+server.listen(port, hostname, () => {
   console.log('Server started on:', `http://${ip.address()}:${port}`, 'or: http://localhost:8080/');
 });
 //server functions
