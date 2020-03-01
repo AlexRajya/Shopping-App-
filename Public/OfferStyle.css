@@ -1,0 +1,185 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+    margin: 0;
+		padding: 0;
+    height: 100%;
+		width:100%;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.bg {
+	text-align: center;
+  background: rgb(100, 100, 255);
+}
+
+.bg{
+	height: 100%;
+	width:100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h1 { font-size: 240%; }
+h2 { font-size: 150%; }
+h3 { font-size: 125%; }
+
+h1, h2, h3 {
+  color: White;
+}
+
+.navbar{
+	background: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	overflow: hidden;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li .navLeft{
+	font-size: 150%;
+	height: 10%;
+	float: left;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li .navRight{
+	font-size: 150%;
+	height: 10%;
+	float: right;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.navRight:hover{
+  background-color: green;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+.searchForm{
+	margin-left: 0.3%;
+	text-align: left;
+}
+
+title {
+  display: none;
+}
+
+article {
+	text-align: left;
+	margin: 0.1em 0em 0em 0em
+}
+
+article:target {
+	background-color: Blue;
+}
+
+section {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	text-align: center;
+	padding: 1%;
+	margin: 1%;
+	height: 68.8%;
+}
+
+p {
+	font-size: 100%;
+	margin-top: 0.5%;
+	margin-bottom: 0.5%;
+	color: White;
+}
+
+a {
+	font-style: italic;
+}
+
+a:hover {
+	background-color: Blue;
+}
+
+@media (max-width: 45em) {
+  nav {
+    margin: 0.25em;
+  	padding: 0.25em;
+  	display: block;
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 10%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 0.0625em solid #888;
+  width: 40%;
+  box-shadow: 0 0.25em 0.5em 0 rgba(0,0,0,0.2),0 0.375em 1.2em 0 rgba(0,0,0,0.19);
+}
+
+.modal-content p{
+	color: Black;
+}
+
+.modal-content h3{
+  color: Black;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-header {
+  padding: 0.125em 1em;
+  background-color: rgb(34, 142, 195);;
+  color: white;
+}
+.modal-header .fill{
+  float: right;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.modal-body {padding: 1em 1em;}
+
+.close{
+	float:right;
+	font-size: 150%;
+	cursor: pointer;
+}
+/* End of modal */
