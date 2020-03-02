@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="3211205636-6i4b7skcon6vldm82g3v7gkrhvajii51.apps.googleusercontent.com">
-    <link href="style.css" rel="stylesheet" title="Default">
+    <link href="OfferStyle.css" rel="stylesheet" title="Default">
     <title>Offers page</title>
   </head>
 
@@ -53,15 +53,33 @@
     </div>
     <div class="bg">
       <div class = "navbar">
+        <nav>
         <ul>
-          <li><div class = "navLeft" onclick="location.href = 'index.html';">Shopping App</div></li>
-          <li><div class = "navRight" id="offers" onclick="location.href = 'Offerspage.html';">Offers</div></li>
-          <li><div class = "navRight" id="login" >Login</div></li>
+          <li><div class = "navLeft">Offers Page</div></li>
+          <li><div class = "navRight" onclick="location.href = 'Offers page.html';">Offers</div></li>
+          <li><div class = "navRight" id="login">Login</div></li>
           <li><div class = "navRight" id="register">Register</div></li>
-          <li><div class = "navRight" id="basket" onclick="location.href = 'basket.html';">Basket</div></li>
-          <li><div class = "navRight" id="home" onclick="location.href = 'index.html';">Home</div></li>
+          <li><div class = "navRight" onclick="location.href = 'basket.html';">Basket</div></li>
+          <li><div class = "navRight"onclick="location.href = 'Index.html';">Home</div></li>
         </ul>
+      </nav>
       </div>
+      <div class = "container">
+        <table>
+        <tr>
+          <th></th>
+          <th>Product name</th>
+          <th>Price</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><img src="insertimage.jpg" height=100 width=100></img></td>
+          <td>BREAD</td>
+          <td>0.90</td>
+          <td>50/50 vitamin bread<td>
+        </tr>
+       </table>
+    </div>
     <script src="index.js"></script>
   </body>
 
