@@ -1,9 +1,12 @@
 // Initialise
 window.onload = () => {
-  document.getElementById('submitButton').addEventListener('click', () => {
-    search(document.getElementById('searchField').value);
-  });
-
+  try{
+    document.getElementById('submitButton').addEventListener('click', () => {
+      search(document.getElementById('searchField').value);
+    });
+  }catch (err){
+    //throw
+  }
   //Login modal listeners
   document.getElementById('login').addEventListener('click', () => {
     document.getElementById('loginModal').style.display = 'block';
@@ -94,4 +97,16 @@ function onSignIn(googleUser) {
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(token));
+}
+function myInsertFunction() {
+  var table = document.getElementById("basketTable");
+  var row = table.insertRow(1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  cell1.innerHTML = "NEW CELL1";
+  cell2.innerHTML = "NEW CELL2";
+}
+function myDeleteFunction() {
+  document.getElementById("basketTable").deleteRow(1);
+
 }

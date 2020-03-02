@@ -16,7 +16,7 @@ html, body {
 
 .bg {
 	text-align: center;
-  background: rgb(100, 100, 255);
+  background: rgb(34, 142, 195);
 }
 
 .bg{
@@ -122,8 +122,6 @@ a:hover {
 	background-color: Blue;
 }
 
-
-
 .productTable  {
 	font-size: 120%
 	font-family: sans-serif;
@@ -144,9 +142,6 @@ width: 100%;
 	border: 1em solid #dddddd;
 	padding: 8em;
 }
-
-
-
 
 @media (max-width: 45em) {
   nav {
@@ -207,5 +202,41 @@ width: 100%;
 	float:right;
 	font-size: 150%;
 	cursor: pointer;
+}
+
+/*Offer page table*/
+.container {
+  position: relative;
+  top: 100px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  height: 0%;
+  position: relative;
+  top: 50px;
+  left: 500px;
+}
+
+td{
+  text-align: center;
+  width: 25%;
+}
+
+
+table th {
+  text-align: center;
+  color: #FFF;
+  padding: 4px 30px 4px 8px;
+}
+
+table tf{
+  border: 1px solid #e3e3e3;
+  padding: 4px 8px;
+}
+
+table tr:nth-child(odd) td {
+  background-color: #e7edf0;
 }
 /* End of modal */
