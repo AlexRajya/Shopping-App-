@@ -1,9 +1,12 @@
 // Initialise
 window.onload = () => {
-  document.getElementById('submitButton').addEventListener('click', () => {
-    search(document.getElementById('searchField').value);
-  });
-
+  try{
+    document.getElementById('submitButton').addEventListener('click', () => {
+      search(document.getElementById('searchField').value);
+    });
+  }catch (err){
+    //throw
+  }
   //Login modal listeners
   document.getElementById('login').addEventListener('click', () => {
     document.getElementById('loginModal').style.display = 'block';
@@ -105,5 +108,5 @@ function myInsertFunction() {
 }
 function myDeleteFunction() {
   document.getElementById("basketTable").deleteRow(1);
-  
+
 }
