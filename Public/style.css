@@ -122,6 +122,32 @@ a:hover {
 	background-color: Blue;
 }
 
+
+
+.productTable  {
+	font-size: 120%
+	font-family: sans-serif;
+
+	color: white;
+border-collapse: collapse;
+width: 100%;
+}
+
+  .productTable  th  {
+  border: 1em solid #dddddd;
+  text-align: center;
+  padding: 8em;
+}
+
+.productTable td{
+	text-align: left;
+	border: 1em solid #dddddd;
+	padding: 8em;
+}
+
+
+
+
 @media (max-width: 45em) {
   nav {
     margin: 0.25em;
