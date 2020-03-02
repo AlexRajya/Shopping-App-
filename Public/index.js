@@ -95,3 +95,21 @@ function onSignIn(googleUser) {
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(token));
 }
+function myInsertFunction() {
+  var table = document.getElementById("basketTable");
+  var row = table.insertRow(0);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  cell1.innerHTML = "NEW CELL1";
+  cell2.innerHTML = "NEW CELL2";
+}
+function myDeleteFunction() {
+  //document.getElementById("basketTable").deleteRow(0);
+  var elmtTable = document.getElementById('basketTable');
+var tableRows = elmtTable.getElementsByTagName('tr');
+var rowCount = tableRows.length;
+
+for (var x=rowCount-1; x>0; x--) {
+   elmtTable.removeChild(tableRows[x]);
+}
+}
