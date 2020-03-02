@@ -1,8 +1,47 @@
 // Initialise
+const myid = Math.random().toString(36).substring(2);// Unique id for each client
+
+function receivedMessageFromServer(e) {
+  const resultObj = JSON.parse(e.data).results;
+  let resultArea = document.getElementById('results');
+  resultArea.innerHTML = '';
+  let p,add,img;
+  for (let i = 0; i < 3; i += 1){
+    p = document.createElement('p');
+    p.textContent = "";
+    resultArea.appendChild(p);
+  }
+  for (let i = 0; i < resultObj.products.length; i += 1){
+    p = document.createElement('p');
+    p.textContent = resultObj.products[i].name + " price:" + resultObj.products[i].salePrice;
+    add = document.createElement('button');
+    add.textContent = "Add to basket";
+    img = document.createElement('img');
+    img.src = resultObj.products[i].image;
+    resultArea.appendChild(img);
+    resultArea.appendChild(p);
+    resultArea.appendChild(add);
+  }
+}
+
+function sendSearch(searchText){
+  const search = {
+    searchText: searchText,
+    id: myid,
+  };
+  ws.send(JSON.stringify(search));
+}
+
 window.onload = () => {
+  try { // Connect to websocket
+    ws = new WebSocket(`ws://${window.location.hostname}:${window.location.port}`);
+    ws.addEventListener('message', receivedMessageFromServer);
+  } catch (err) {
+    console.log('failed to connect to WebSocket');
+  }
   try{
     document.getElementById('submitButton').addEventListener('click', () => {
-      search(document.getElementById('searchField').value);
+      sendSearch(document.getElementById('searchField').value);
     });
   }catch (err){
     //throw
@@ -60,41 +99,6 @@ function register(){
   //todo
 }
 
-async function displayResults(){
-  const response = await fetch('temp.txt');
-  const results = await response.text();
-  let resultObj = JSON.parse(results);
-  let resultArea = document.getElementById('results');
-  let p,add,img;
-
-  for (let i = 0; i< resultObj.products.length; i += 1){
-    p = document.createElement('p');
-    p.textContent = JSON.stringify(resultObj.products[i]);
-    add = document.createElement('button')
-    add.textContent = "Add to basket"
-    img = document.createElement('p');
-    img.textContent = "img will go here";
-    resultArea.appendChild(img);
-    resultArea.appendChild(p);
-    resultArea.appendChild(add);
-  }
-  //resultArea.textContent = JSON.stringify(resultObj.products);
-}
-
-function search(search){
-  const token = {token:search};
-  const url = `${window.location.href}search`;
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == XMLHttpRequest.DONE) {
-        displayResults();
-    }
-  }
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-  xhr.send(JSON.stringify(token));
-}
-
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId());
@@ -121,5 +125,4 @@ function myInsertFunction() {
 }
 function myDeleteFunction() {
   document.getElementById("basketTable").deleteRow(1);
-
 }
