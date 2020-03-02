@@ -1,0 +1,5 @@
+          <li><div class = "navRight" onclick="location.href = 'Offers page.html';">Offers</div></li>
+          <li><div class = "navRight" id="login">Login</div></li>
+          <li><div class = "navRight" id="register">Register</div></li>
+          <li><div class = "navRight" onclick="location.href = 'basket.html';">Basket</div></li>
+          <li><div class = "navRight"onclick="location.href = 'Index.html';">Home</div></li>
