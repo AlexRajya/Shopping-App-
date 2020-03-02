@@ -1,0 +1,9 @@
+<header>
+  <nav class="tab">
+  <button class="active" onclick="window.location.href = 'index.html';">Home</button>
+  <button class="tablink" onclick="window.location.href = 'litReview.html';">Literature review</button>
+  <button class="tablink" onclick="window.location.href = 'discoveryLog.html';">Discovery Log</button>
+  <button class="tablink" onclick="window.location.href = 'picGallery.html';">Picture Gallery</button>
+  <button class="tablink" onclick="window.location.href = 'vidGallery.html';">Video Gallery</button>
+  </nav>
+</header>
