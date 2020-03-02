@@ -65,7 +65,20 @@ async function displayResults(){
   const results = await response.text();
   let resultObj = JSON.parse(results);
   let resultArea = document.getElementById('results');
-  resultArea.textContent = JSON.stringify(resultObj.products);
+  let p,add,img;
+
+  for (let i = 0; i< resultObj.products.length; i += 1){
+    p = document.createElement('p');
+    p.textContent = JSON.stringify(resultObj.products[i]);
+    add = document.createElement('button')
+    add.textContent = "Add to basket"
+    img = document.createElement('p');
+    img.textContent = "img will go here";
+    resultArea.appendChild(img);
+    resultArea.appendChild(p);
+    resultArea.appendChild(add);
+  }
+  //resultArea.textContent = JSON.stringify(resultObj.products);
 }
 
 function search(search){
