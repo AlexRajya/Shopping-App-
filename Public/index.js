@@ -95,3 +95,22 @@ function onSignIn(googleUser) {
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(token));
 }
+
+  //Slide show for offers page
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
