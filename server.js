@@ -4,39 +4,12 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const http = require('http');
 const ip = require('ip');
-const ws = require('ws');
 var bby = require('bestbuy')('lfXY4GpC14duGk4N3uGvGD3d');
 
 // constants
 const port = process.env.PORT || 8080;
 const app = express();
 const server = http.createServer(app);
-const wss = new ws.Server({ server });
-
-// server functions
-function messageHandler(message) {
-  wss.clients.forEach((client) => {
-    if (client.readyState === client.OPEN) {
-      try {
-        bby.products('search='+JSON.parse(message).searchText,{show:'name,salePrice,image'}).then(function(data){
-          let results = {
-            results: data,
-          }
-          client.send(JSON.stringify(results));
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  });
-}
-
-function connectionHandler(ws) {
-  console.log('new connection');
-  ws.on('message', messageHandler);
-}
-
-wss.on('connection', connectionHandler);
 
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(__dirname));
