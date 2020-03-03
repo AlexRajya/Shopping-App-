@@ -1,47 +1,83 @@
 // Initialise
-const myid = Math.random().toString(36).substring(2);// Unique id for each client
+async function getFromAPIs(search){
+  const tesco = await fetch( "https://dev.tescolabs.com/grocery/products/?query="+search+"&offset=0&limit=13&", {
+    method: 'GET',
+    headers: {
+      "Ocp-Apim-Subscription-Key": 'b1ef4204177a4deb86619436f9e1e7a6'
+    }
+  });
+  const result1 = await tesco.json(); //extract JSON from the http response
+  console.log(result1);
 
-function receivedMessageFromServer(e) {
-  const resultObj = JSON.parse(e.data).results;
+  const response = await fetch( 'https://api.bestbuy.com/v1/products(search='+search+')?format=json&show=image,name,salePrice&apiKey=lfXY4GpC14duGk4N3uGvGD3d', {
+    method: 'GET',
+  });
+  const result2 = await response.json(); //extract JSON from the http response
+  displayResults(result1, result2);
+}
+
+function displayResults(result1, result2){
+  result1 = result1.uk.ghs.products.results;
   let resultArea = document.getElementById('results');
   resultArea.innerHTML = '';
   let p,add,img;
-  for (let i = 0; i < 3; i += 1){
-    p = document.createElement('p');
-    p.textContent = "";
-    resultArea.appendChild(p);
-  }
-  for (let i = 0; i < resultObj.products.length; i += 1){
-    p = document.createElement('p');
-    p.textContent = resultObj.products[i].name + " price:" + resultObj.products[i].salePrice;
-    add = document.createElement('button');
-    add.textContent = "Add to basket";
-    img = document.createElement('img');
-    img.src = resultObj.products[i].image;
-    resultArea.appendChild(img);
-    resultArea.appendChild(p);
-    resultArea.appendChild(add);
-  }
-}
+  p = document.createElement('p');
+  p.textContent = "BestBuy:";
+  resultArea.appendChild(p);
 
-function sendSearch(searchText){
-  const search = {
-    searchText: searchText,
-    id: myid,
-  };
-  ws.send(JSON.stringify(search));
+  p = document.createElement('p');
+  p.textContent = "Tesco:";
+  resultArea.appendChild(p);
+
+  p = document.createElement('p');
+  p.textContent = "Sainsburys:";
+  resultArea.appendChild(p);
+
+  let tescoCount = 0;
+  let bestCount = 0;
+  let bestDone,tescoDone = false;
+  for (let i = 1; i < 50; i += 1){
+    div = document.createElement('div');
+    p = document.createElement('p');
+    img = document.createElement('img');
+    add = document.createElement('button');
+    if (i % 3 === 1){//If bestbuy
+      bestCount += 1;
+      if (bestCount < result2.products.length){
+        p.textContent = result2.products[bestCount].name + "- Price:" + result2.products[bestCount].salePrice;
+        img.src = result2.products[bestCount].image;
+      }else{
+        p.textContent = "No item found";
+        bestDone = true;
+      }
+    }else if(i % 3 === 2){//If Tesco
+      tescoCount += 1;
+      if (tescoCount < result1.length){
+        p.textContent = result1[tescoCount].name + "- Price:" + result1[tescoCount].price;
+        img.src = result1[tescoCount].image;
+      }else{
+        p.textContent = "No item found";
+        tescoDone = true;
+      }
+    }else{
+      p.textContent = "No item found";
+    }
+    if (tescoDone === true && bestDone === true){
+      break;
+    }
+    add.textContent = "Add to basket";
+
+    div.appendChild(img);
+    div.appendChild(p);
+    div.appendChild(add);
+    resultArea.appendChild(div);
+  }
 }
 
 window.onload = () => {
-  try { // Connect to websocket
-    ws = new WebSocket(`ws://${window.location.hostname}:${window.location.port}`);
-    ws.addEventListener('message', receivedMessageFromServer);
-  } catch (err) {
-    console.log('failed to connect to WebSocket');
-  }
   try{
     document.getElementById('submitButton').addEventListener('click', () => {
-      sendSearch(document.getElementById('searchField').value);
+      getFromAPIs(document.getElementById('searchField').value);
     });
   }catch (err){
     //throw
@@ -115,6 +151,8 @@ function onSignIn(googleUser) {
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(token));
 }
+
+//Basket script
 function myInsertFunction() {
   var table = document.getElementById("basketTable");
   var row = table.insertRow(1);
