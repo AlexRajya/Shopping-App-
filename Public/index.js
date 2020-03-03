@@ -29,6 +29,10 @@ function displayResults(result1, result2){
   p.textContent = "Tesco:";
   resultArea.appendChild(p);
 
+  p = document.createElement('p');
+  p.textContent = "Sainsburys:";
+  resultArea.appendChild(p);
+
   let tescoCount = 0;
   let bestCount = 0;
   let bestDone,tescoDone = false;
@@ -37,7 +41,7 @@ function displayResults(result1, result2){
     p = document.createElement('p');
     img = document.createElement('img');
     add = document.createElement('button');
-    if (i % 2 === 1){//If bestbuy
+    if (i % 3 === 1){//If bestbuy
       bestCount += 1;
       if (bestCount < result2.products.length){
         p.textContent = result2.products[bestCount].name + "- Price:" + result2.products[bestCount].salePrice;
@@ -45,7 +49,7 @@ function displayResults(result1, result2){
       }else{
         bestDone = true;
       }
-    }else{//If Tesco
+    }else if(i % 3 === 2){//If Tesco
       tescoCount += 1;
       if (tescoCount < result1.length){
         p.textContent = result1[tescoCount].name + "- Price:" + result1[tescoCount].price;
@@ -53,6 +57,8 @@ function displayResults(result1, result2){
       }else{
         tescoDone = true;
       }
+    }else{
+      //sainburys
     }
     if (tescoDone === true && bestDone === true){
       break;

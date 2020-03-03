@@ -34,9 +34,9 @@ html, body {
 	text-align: center;
 	grid-row-gap: 2%;
 	display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 4em 1fr 1fr;
-  grid-template-areas: "head head";
+  grid-template-areas: "head head head";
   min-height: 100%;
   width: 100%;
 }
