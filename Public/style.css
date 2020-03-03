@@ -8,25 +8,40 @@ html, body {
 		padding: 0;
     height: 100%;
 		width:100%;
+		background: rgb(34, 142, 195);
 }
 
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
+.results img{
+	height: 300px;
+	width: 300px;
+}
+
+.results p{
+	font-size: 150%;
+}
+
+.results button{
+	font-size: 150%;
+}
+
 .results{
+	justify-content: center;
+ 	align-items: center;
+	text-align: center;
+	grid-row-gap: 2%;
 	display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 4em 1fr 1fr;
-
   grid-template-areas: "head head head";
-
   min-height: 100%;
   width: 100%;
 }
 .bg {
 	text-align: center;
-  background: rgb(34, 142, 195);
 }
 
 .bg{
