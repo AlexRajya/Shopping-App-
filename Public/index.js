@@ -12,15 +12,17 @@ function receivedMessageFromServer(e) {
     resultArea.appendChild(p);
   }
   for (let i = 0; i < resultObj.products.length; i += 1){
+    div = document.createElement('div');
     p = document.createElement('p');
     p.textContent = resultObj.products[i].name + " price:" + resultObj.products[i].salePrice;
     add = document.createElement('button');
     add.textContent = "Add to basket";
     img = document.createElement('img');
     img.src = resultObj.products[i].image;
-    resultArea.appendChild(img);
-    resultArea.appendChild(p);
-    resultArea.appendChild(add);
+    div.appendChild(img);
+    div.appendChild(p);
+    div.appendChild(add);
+    resultArea.appendChild(div);
   }
 }
 
