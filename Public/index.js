@@ -47,6 +47,7 @@ function displayResults(result1, result2){
         p.textContent = result2.products[bestCount].name + "- Price:" + result2.products[bestCount].salePrice;
         img.src = result2.products[bestCount].image;
       }else{
+        p.textContent = "No item found";
         bestDone = true;
       }
     }else if(i % 3 === 2){//If Tesco
@@ -55,10 +56,11 @@ function displayResults(result1, result2){
         p.textContent = result1[tescoCount].name + "- Price:" + result1[tescoCount].price;
         img.src = result1[tescoCount].image;
       }else{
+        p.textContent = "No item found";
         tescoDone = true;
       }
     }else{
-      //sainburys
+      p.textContent = "No item found";
     }
     if (tescoDone === true && bestDone === true){
       break;
