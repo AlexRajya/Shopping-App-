@@ -1,69 +1,87 @@
 <!DOCTYPE html>
-<HTML LANG="EN">
-
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="3211205636-6i4b7skcon6vldm82g3v7gkrhvajii51.apps.googleusercontent.com">
-    <link href="style.css" rel="stylesheet" title="Default">
     <title>Offers page</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="google-signin-client_id" content="3211205636-6i4b7skcon6vldm82g3v7gkrhvajii51.apps.googleusercontent.com">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<script src="index.js"></script>
+
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
+		</noscript>
+	</head>
+
+
   </head>
 
   <body>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span id="loginClose" class="close">&times;</span>
-          <span><h2>Login:</h2><span>
-        </div>
-        <div class="modal-body">
-          <p><label for="uname"><b>Username</b></label></p>
-          <p><input type="text" id="loginText" placeholder="Enter Username" name="uname" required></p>
+		<!-- Wrapper -->
+	 <script src="https://apis.google.com/js/platform.js" async defer></script>
+	 <div id="loginModal" class="modal">
+		 <div class="modal-content">
+			 <div class="modal-header">
+				 <span id="loginClose" class="close">&times;</span>
+				 <span><h2>Login:</h2><span>
+			 </div>
+			 <div class="modal-body">
+				 <p><label for="uname"><b>Username</b></label></p>
+				 <p><input type="text" id="loginText" placeholder="Enter Username" name="uname" required></p>
 
-          <p><label for="psw"><b>Password</b></label></p>
-          <p><input type="password" id="passwordText" placeholder="Enter Password" name="psw" required></p>
+				 <p><label for="psw"><b>Password</b></label></p>
+				 <p><input type="password" id="passwordText" placeholder="Enter Password" name="psw" required></p>
+				 <p><button type="submit" id="loginButton">Login</button></p>
+				 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+			 </div>
+		 </div>
+	 </div>
 
-          <p><button type="submit" id="loginButton">Login</button></p>
+	 <div id="registerModal" class="modal">
+		 <div class="modal-content">
+			 <div class="modal-header">
+				 <span id="registerClose" class="close">&times;</span>
+				 <span><h2>Login:</h2><span>
+			 </div>
+			 <div class="modal-body">
+				 <p><label for="uname"><b>Username</b></label></p>
+				 <p><input type="text" placeholder="Enter Username" name="uname" required></p>
 
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        </div>
-      </div>
-    </div>
+				 <p><label for="email"><b>Email</b></label></p>
+				 <p><input type="text" placeholder="Enter email" name="email" required></p>
 
-    <div id="registerModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span id="registerClose" class="close">&times;</span>
-          <span><h2>Login:</h2><span>
-        </div>
-        <div class="modal-body">
-          <p><label for="uname"><b>Username</b></label></p>
-          <p><input type="text" placeholder="Enter Username" name="uname" required></p>
+				 <p><label for="psw"><b>Password</b></label></p>
+				 <p><input type="password" placeholder="Enter Password" name="psw" required></p>
 
-          <p><label for="email"><b>Email</b></label></p>
-          <p><input type="text" placeholder="Enter email" name="email" required></p>
+				 <p><button type="submit" id="registerButton">Register</button></p>
+			 </div>
+		 </div>
+	 </div>
+			<div class="wrapper style1">
 
-          <p><label for="psw"><b>Password</b></label></p>
-          <p><input type="password" placeholder="Enter Password" name="psw" required></p>
+				<!-- Header -->
+					<div id="header" class="skel-panels-fixed">
+						<div id="logo">
+							<h1><a href="index.html">Smart Shopping App</a></h1>
+							<span class="tag">by UoP SE Students</span>
+						</div>
+						<nav id="nav">
+							<ul>
+								<li class="active"><a href="index.html">Home</a></li>
+								<li><a href="Offerspage.html">Offers</a></li>
+								<li><a id="login">Login</a></li>
+								<li><a id="register">Register</a></li>
+								<li><a href="basket.html">Basket</a></li>
+							</ul>
+            </div>
+          </nav>
+          </div>
 
-          <p><button type="submit" id="registerButton">Register</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="bg">
-      <div class = "navbar">
-        <nav>
-        <ul>
-          <li><div class = "navLeft">Offers Page</div></li>
-          <li><div class = "navRight" onclick="location.href = 'Offers page.html';">Offers</div></li>
-          <li><div class = "navRight" id="login">Login</div></li>
-          <li><div class = "navRight" id="register">Register</div></li>
-          <li><div class = "navRight" onclick="location.href = 'basket.html';">Basket</div></li>
-          <li><div class = "navRight"onclick="location.href = 'Index.html';">Home</div></li>
-        </ul>
-      </nav>
-      </div>
       <div class = "container">
         <table>
         <tr>
