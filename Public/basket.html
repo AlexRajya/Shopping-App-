@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="3211205636-6i4b7skcon6vldm82g3v7gkrhvajii51.apps.googleusercontent.com">
-    <link href="style.css" rel="stylesheet" title="Default">
+
+
+      <link rel="stylesheet" href="css/skel.css">
+      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="css/style-wide.css" />
+
     <title>Basket page</title>
   </head>
 
@@ -51,24 +56,41 @@
         </div>
       </div>
     </div>
-    <div class="bg">
-      <div class = "navbar">
-        <ul>
-          <li><div class = "navLeft" onclick="location.href = 'index.html';">Shopping App</div></li>
-          <li><div class = "navRight" id="offers" onclick="location.href = 'Offerspage.html';">Offers</div></li>
-          <li><div class = "navRight" id="login" >Login</div></li>
-          <li><div class = "navRight" id="register">Register</div></li>
-          <li><div class = "navRight" id="basket" onclick="location.href = 'basket.html';">Basket</div></li>
-          <li><div class = "navRight" id="home" onclick="location.href = 'index.html';">Home</div></li>
-        </ul>
-      </div>
-    <script src="index.js"></script>
+    <div class="wrapper style1">
+
+      <!-- Header -->
+        <div id="header" class="skel-panels-fixed">
+          <div id="logo">
+            <h1><a href="index.html">Smart Shopping App</a></h1>
+            <span class="tag">by UoP SE Students</span>
+          </div>
+          <nav id="nav">
+            <ul>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="offerspage.html">Offers</a></li>
+              <li><a id="login">Login</a></li>
+              <li><a id="register">Register</a></li>
+              <li><a href="basket.html">Basket</a></li>
+            </ul>
+
+          </div>
+          </nav>
+          </div>
+          <table id="basketTable">
+          </table>
+
+
+        <button type="button" >Apply changes</button>
+
+        <button type="button" onclick= "myDeleteFunction()">Empty cart</button>
+
+        <button type="button">Checkout</button>
+
+  <script src="index.js"></script>
   </body>
 
+
+
+
+
 </html>
-
-<button type="button">Apply changes</button>
-
-<button type="button" onclick= "myDeleteFunction()">Empty cart</button>
-
-<button type="button">Checkout</button>
