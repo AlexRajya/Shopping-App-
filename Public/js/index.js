@@ -87,12 +87,45 @@ function displayResults(result1, result2, result3){
       break;
     }
     add.textContent = "Add to basket";
+    add.addEventListener('click', addToBasket);
 
     div.appendChild(img);
     div.appendChild(p);
     div.appendChild(add);
     resultArea.appendChild(div);
   }
+}
+
+function addToBasket(e){
+  let element = e.target.parentElement;
+  let itemInfo = {
+    info: undefined,
+    img: undefined,
+  }
+
+  for (let i = 0; i < element.children.length; i+=1){
+    if (element.children[i].tagName === 'P'){
+      itemInfo.info = element.children[i].textContent;
+    }else if(element.children[i].tagName === 'IMG'){
+      itemInfo.img = element.children[i].src;
+    }
+  }
+  console.log(itemInfo);
+  if (currentUser !== undefined){
+    sendPInfo(itemInfo);
+  }
+}
+
+function sendPInfo(itemInfo){
+  let body = {
+    user: currentUser,
+    itemInfo: itemInfo,
+  };
+  const url = `${window.location.href}pinfo`;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.send(JSON.stringify(body));
 }
 
 window.onload = () => {
@@ -167,7 +200,7 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
+  currentUser = profile.getEmail();
   //send token to server
   let id_token = googleUser.getAuthResponse().id_token;
   const token = {token:profile.getEmail()};
