@@ -58,7 +58,7 @@ function displayResults(result1, result2, result3){
     if (i % 3 === 1){//If bestbuy
       bestCount += 1;
       if (bestCount < result2.products.length){
-        p.textContent = result2.products[bestCount].name + "- Price: " + result2.products[bestCount].salePrice;
+        p.textContent = result2.products[bestCount].name + "- Price: £" + result2.products[bestCount].salePrice;
         img.src = result2.products[bestCount].image;
       }else{
         p.textContent = "No item found";
@@ -67,7 +67,7 @@ function displayResults(result1, result2, result3){
     }else if(i % 3 === 2){//If Tesco
       tescoCount += 1;
       if (tescoCount < result1.length){
-        p.textContent = result1[tescoCount].name + "- Price: " + result1[tescoCount].price;
+        p.textContent = result1[tescoCount].name + "- Price: £" + result1[tescoCount].price;
         img.src = result1[tescoCount].image;
       }else{
         p.textContent = "No item found";
