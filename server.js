@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const http = require('http');
 const ip = require('ip');
-var bby = require('bestbuy')('lfXY4GpC14duGk4N3uGvGD3d');
 
 // constants
 const port = process.env.PORT || 8080;
@@ -21,6 +20,17 @@ app.post('/login', (req, res) => {
   try {
     let userEmail = (req.body).token;
     loadUser(userEmail);
+    res.sendStatus(200);// OK
+  } catch (err) {
+    res.sendStatus(400);// bad request
+  }
+});
+
+app.post('/pinfo', (req, res) => {
+  try {
+    let itemInfo = (req.body).itemInfo;
+    let user = (req.body).user;
+    saveProduct(itemInfo, user);
     res.sendStatus(200);// OK
   } catch (err) {
     res.sendStatus(400);// bad request
@@ -44,12 +54,22 @@ function loadUser(email){
   if (pos === false){
     console.log("user not found, appending to DB");
     data.user.push(email);
-    data.basket.push(["basket:"])
+    data.basket.push([])
     fs.writeFileSync('basketData.txt', JSON.stringify(data));
   }
   //
 }
 
+function saveProduct(itemInfo, user){
+  let data = fs.readFileSync('basketData.txt', 'utf8')
+  data = JSON.parse(data);
+  for (let i = 0; i < data.user.length; i += 1) {
+    if (data.user[i] === user) {
+      data.basket[i].push(itemInfo);
+    }
+  }
+  fs.writeFileSync('basketData.txt', JSON.stringify(data));
+}
 //create files with default values if none exists
 fs.exists('users.txt', function(exists) {
   if (!exists) {
@@ -64,8 +84,8 @@ fs.exists('users.txt', function(exists) {
 fs.exists('basketData.txt', function(exists) {
   if (!exists) {
     const baskets = {
-      user: ['id','Admin'],
-      basket: [['product codes'],['1232232,231231123,2323442']]
+      user: ['Admin'],
+      basket: [[{info: 'product info', img: 'img source',}]]
     };
     fs.writeFileSync('basketData.txt', JSON.stringify((baskets)));
   }
