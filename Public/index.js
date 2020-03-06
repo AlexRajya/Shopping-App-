@@ -1,5 +1,6 @@
 // Initialise
 async function getFromAPIs(search){
+  //tesco
   const tesco = await fetch( "https://dev.tescolabs.com/grocery/products/?query="+search+"&offset=0&limit=13&", {
     method: 'GET',
     headers: {
@@ -7,17 +8,26 @@ async function getFromAPIs(search){
     }
   });
   const result1 = await tesco.json(); //extract JSON from the http response
-  console.log(result1);
 
+  //bestBuy
   const response = await fetch( 'https://api.bestbuy.com/v1/products(search='+search+')?format=json&show=image,name,salePrice&apiKey=lfXY4GpC14duGk4N3uGvGD3d', {
     method: 'GET',
   });
   const result2 = await response.json(); //extract JSON from the http response
-  displayResults(result1, result2);
+
+  //Asda
+  const asda = await fetch( "https://cors-anywhere.herokuapp.com/https://groceries.asda.com/cmscontent/v2/items/autoSuggest?requestorigin=gi&searchTerm="+search+"&cacheable=true&storeId=4565&viewPort=xlarge", {
+    method: 'GET',
+  });
+  const result3 = await asda.json(); //extract JSON from the http response
+
+  displayResults(result1, result2, result3);
 }
 
-function displayResults(result1, result2){
+function displayResults(result1, result2, result3){
   result1 = result1.uk.ghs.products.results;
+  result3 = result3.payload.autoSuggestionItems;
+  console.log(result1);
   let resultArea = document.getElementById('results');
   resultArea.innerHTML = '';
   let p,add,img;
@@ -30,13 +40,17 @@ function displayResults(result1, result2){
   resultArea.appendChild(p);
 
   p = document.createElement('p');
-  p.textContent = "Sainsburys:";
+  p.textContent = "Asda:";
   resultArea.appendChild(p);
 
   let tescoCount = 0;
   let bestCount = 0;
-  let bestDone,tescoDone = false;
-  for (let i = 1; i < 50; i += 1){
+  let asdaCount = 0;
+  let bestDone = false;
+  let tescoDone = false;
+  let asdaDone = false;
+
+  for (let i = 1; i < 60; i += 1){
     div = document.createElement('div');
     p = document.createElement('p');
     img = document.createElement('img');
@@ -60,9 +74,16 @@ function displayResults(result1, result2){
         tescoDone = true;
       }
     }else{
-      p.textContent = "No item found";
+      asdaCount += 1;
+      if (asdaCount < result3.length){
+        p.textContent = result3[asdaCount].skuName + "- Price:" + result3[asdaCount].price;
+        img.src = "https://ui.assets-asda.com"+result3[asdaCount].extraLargeImageURL;
+      }else{
+        p.textContent = "No item found";
+        asdaDone = true;
+      }
     }
-    if (tescoDone === true && bestDone === true){
+    if (tescoDone === true && bestDone === true && asdaDone === true){
       break;
     }
     add.textContent = "Add to basket";
@@ -152,6 +173,7 @@ function onSignIn(googleUser) {
   xhr.send(JSON.stringify(token));
 }
 
+
 //Basket script
 function myInsertFunction() {
   var table = document.getElementById("basketTable");
@@ -163,4 +185,44 @@ function myInsertFunction() {
 }
 function myDeleteFunction() {
   document.getElementById("basketTable").deleteRow(1);
+}
+
+function generateTableHead(table, data) {
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of data) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
+
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+
+try{
+  let mountains = [
+    { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
+    { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
+    { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
+    { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
+    { name: "Monte Amiata", height: 1738, place: "Siena" }
+  ];
+
+  let table = document.querySelector("table");
+  let data = Object.keys(mountains[0]);
+
+  generateTable(table, mountains);
+  generateTableHead(table, data);
+}catch(err){
+  //Not on basket page - add if statement to address later for cleaness
 }
