@@ -87,6 +87,7 @@ function displayResults(result1, result2, result3){
       break;
     }
     add.textContent = "Add to basket";
+    add.addEventListener('click', addToBasket);
 
     div.appendChild(img);
     div.appendChild(p);
@@ -95,10 +96,47 @@ function displayResults(result1, result2, result3){
   }
 }
 
+function addToBasket(e){
+  let element = e.target.parentElement;
+  let itemInfo = {
+    info: undefined,
+    img: undefined,
+  }
+
+  for (let i = 0; i < element.children.length; i+=1){
+    if (element.children[i].tagName === 'P'){
+      itemInfo.info = element.children[i].textContent;
+    }else if(element.children[i].tagName === 'IMG'){
+      itemInfo.img = element.children[i].src;
+    }
+  }
+  console.log(itemInfo);
+  if (currentUser !== undefined){
+    sendPInfo(itemInfo);
+  }
+}
+
+function sendPInfo(itemInfo){
+  let body = {
+    user: currentUser,
+    itemInfo: itemInfo,
+  };
+  const url = `${window.location.href}pinfo`;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.send(JSON.stringify(body));
+}
+
 window.onload = () => {
   try{
     document.getElementById('submitButton').addEventListener('click', () => {
       getFromAPIs(document.getElementById('searchField').value);
+    });
+    document.getElementById('searchField').addEventListener('keydown', (e) => {
+      if (e.key === "Enter"){
+        getFromAPIs(document.getElementById('searchField').value);
+      }
     });
   }catch (err){
     //throw
@@ -162,7 +200,7 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
+  currentUser = profile.getEmail();
   //send token to server
   let id_token = googleUser.getAuthResponse().id_token;
   const token = {token:profile.getEmail()};
@@ -171,58 +209,4 @@ function onSignIn(googleUser) {
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(token));
-}
-
-
-//Basket script
-function myInsertFunction() {
-  var table = document.getElementById("basketTable");
-  var row = table.insertRow(1);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  cell1.innerHTML = "NEW CELL1";
-  cell2.innerHTML = "NEW CELL2";
-}
-function myDeleteFunction() {
-  document.getElementById("basketTable").deleteRow(1);
-}
-
-function generateTableHead(table, data) {
-  let thead = table.createTHead();
-  let row = thead.insertRow();
-  for (let key of data) {
-    let th = document.createElement("th");
-    let text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-}
-
-function generateTable(table, data) {
-  for (let element of data) {
-    let row = table.insertRow();
-    for (key in element) {
-      let cell = row.insertCell();
-      let text = document.createTextNode(element[key]);
-      cell.appendChild(text);
-    }
-  }
-}
-
-try{
-  let mountains = [
-    { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-    { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-    { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-    { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-    { name: "Monte Amiata", height: 1738, place: "Siena" }
-  ];
-
-  let table = document.querySelector("table");
-  let data = Object.keys(mountains[0]);
-
-  generateTable(table, mountains);
-  generateTableHead(table, data);
-}catch(err){
-  //Not on basket page - add if statement to address later for cleaness
 }
