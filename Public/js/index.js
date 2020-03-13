@@ -67,7 +67,7 @@ function displayResults(result1, result2, result3){
     }else if(i % 3 === 2){//If Tesco
       tescoCount += 1;
       if (tescoCount < result1.length){
-        p.textContent = result1[tescoCount].name + "- Price: £" + result1[tescoCount].price;
+        p.textContent = result1[tescoCount].name + "- Price: £" + (result1[tescoCount].price).toFixed(2);
         img.src = result1[tescoCount].image;
       }else{
         p.textContent = "No item found";
