@@ -58,7 +58,7 @@ function displayResults(result1, result2, result3){
     if (i % 3 === 1){//If bestbuy
       bestCount += 1;
       if (bestCount < result2.products.length){
-        p.textContent = result2.products[bestCount].name + "- Price: £" + result2.products[bestCount].salePrice;
+        p.textContent = result2.products[bestCount].name + " - Price: £" + result2.products[bestCount].salePrice;
         img.src = result2.products[bestCount].image;
       }else{
         p.textContent = "No item found";
@@ -68,7 +68,7 @@ function displayResults(result1, result2, result3){
       tescoCount += 1;
       if (tescoCount < result1.length){
         tescoProductPrice = result1[tescoCount].price;
-        p.textContent = result1[tescoCount].name + "- Price: £" + productPrice.toFixed(2);
+        p.textContent = result1[tescoCount].name + " - Price: £" + productPrice.toFixed(2);
         img.src = result1[tescoCount].image;
       }else{
         p.textContent = "No item found";
@@ -77,7 +77,7 @@ function displayResults(result1, result2, result3){
     }else{
       asdaCount += 1;
       if (asdaCount < result3.length){
-        p.textContent = result3[asdaCount].skuName + "- Price: " + result3[asdaCount].price;
+        p.textContent = result3[asdaCount].skuName + " - Price: " + result3[asdaCount].price;
         img.src = "https://ui.assets-asda.com"+result3[asdaCount].extraLargeImageURL;
       }else{
         p.textContent = "No item found";
