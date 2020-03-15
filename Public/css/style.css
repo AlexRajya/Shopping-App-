@@ -770,3 +770,93 @@ table tf{
 table tr:nth-child(odd) td {
   background-color: #e7edf0;
 }
+
+.basket{
+
+}
+.image { float: left; width: 20%; color: rgb(255, 255, 255); }
+.details { float: left; width: 37%; color: rgb(255, 255, 255); }
+.price { float: left; width: 12%; color: rgb(255, 255, 255); }
+.quantity { float: left; width: 10%; color: rgb(255, 255, 255); }
+.removal { float: left; width: 9%; color: rgb(255, 255, 255); }
+.total { float: left; width: 12%; text-align: right; color: rgb(255, 255, 255); }
+
+
+
+body {
+  padding: 0px 30px 30px 20px;
+  font-family: $font-default;
+  font-weight: 100;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+label {
+  color: $color-label;
+}
+
+
+.column-labels {
+  label {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $color-border;
+  }
+  
+ 
+
+.product {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color-border;
+  
+  }
+  
+  .details {
+    .product-title {
+      margin-right: 20px;
+      font-family: $font-bold;
+    }
+    .description {
+      margin: 5px 20px 5px 0;
+      line-height: 1.4em;
+    }
+  }
+  
+  .quantity {
+    input {
+      width: 40px;
+      
+    }
+  }
+  .totals-item-total {
+    font-family: $font-bold;
+  }
+}
+
+
+.checkout {
+  float: right;
+  border: 0;
+  margin-top: 20px;
+  padding: 6px 25px;
+  background-color: #6b6;
+  color: #fff;
+  font-size: 25px;
+  border-radius: 3px;
+	}
+
+
+
+.empty {
+  float: right;
+  border: 0;
+  margin-top: 20px;
+  padding: 6px 25px;
+  background-color: rgb(172, 37, 37);
+  color: #fff;
+  font-size: 25px;
+  border-radius: 3px;
+	}
