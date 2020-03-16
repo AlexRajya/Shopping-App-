@@ -121,7 +121,7 @@ function sendPInfo(itemInfo){
     user: currentUser,
     itemInfo: itemInfo,
   };
-  const url = `${window.location.href}pinfo`;
+  const url = `http://localhost:8080/pinfo`;
   const xhr = new XMLHttpRequest();
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
@@ -204,7 +204,7 @@ function onSignIn(googleUser) {
   //send token to server
   let id_token = googleUser.getAuthResponse().id_token;
   const token = {token:profile.getEmail()};
-  const url = `${window.location.href}login`;
+  const url = `http://localhost:8080/login`;
   const xhr = new XMLHttpRequest();
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
