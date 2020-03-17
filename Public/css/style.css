@@ -697,16 +697,29 @@
 
 .modal-header {
   padding: 0.125em 1em;
-  background-color: rgb(34, 142, 195);;
+  background-color: #d84780;;
   color: white;
 }
+
 .modal-header .fill{
   float: right;
   font-size: 200%;
   cursor: pointer;
 }
 
-.modal-body {padding: 1em 1em;}
+.modal-body {
+  padding: 1em 1em;
+  background-color: #d84780;
+  font-family: 'Raleway', sans-serif;
+  height: 65vh;
+  color: #fefefe;
+  font-weight: 200;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  display:inline-block;
+  margin: 8px 8px 10px 8px;
+}
 
 .close{
 	float:right;
