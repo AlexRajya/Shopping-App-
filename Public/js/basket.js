@@ -86,16 +86,13 @@ function onSignIn(googleUser) {
   loadBasket();
 }
 
-function myInsertFunction() {
-  var table = document.getElementById("basketTable");
-  var row = table.insertRow(1);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  cell1.innerHTML = "NEW CELL1";
-  cell2.innerHTML = "NEW CELL2";
+
+function myDeleteFunction(r) {
+  document.getElementById("basketTable").deleteRow(r);
 }
-function myDeleteFunction() {
-  document.getElementById("basketTable").deleteRow(1);
+
+function emptyBasket(){
+  document.getElementById("basketTable").remove();
 }
 
 function generateTableHead(table, data) {
@@ -112,10 +109,16 @@ function generateTableHead(table, data) {
 function generateTable(table, data) {
   for (let element of data) {
     let row = table.insertRow();
+    let btn = document.createElement("button");
+    btn.setAttribute("style","color: white; text-align: center; background-color: red; padding: 4px 30px 4px 8px; margin: 8px; font-size:100%");
     for (key in element) {
       let cell = row.insertCell();
+      let i = 1;
+      btn.innerHTML = "Remove";
+      btn.onclick= function(){myDeleteFunction(i)};
       let text = document.createTextNode(element[key]);
       cell.appendChild(text);
+      cell.appendChild(btn);
     }
   }
 }
