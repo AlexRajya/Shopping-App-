@@ -100,9 +100,11 @@ function generateTableHead(table, data) {
   let row = thead.insertRow();
   for (let key of data) {
     let th = document.createElement("th");
+    let th2 = document.createElement("th");
     let text = document.createTextNode(key);
     th.appendChild(text);
     row.appendChild(th);
+    row.appendChild(th2);
   }
 }
 
@@ -110,15 +112,16 @@ function generateTable(table, data) {
   for (let element of data) {
     let row = table.insertRow();
     let btn = document.createElement("button");
-    btn.setAttribute("style","color: white; text-align: center; background-color: red; padding: 4px 30px 4px 8px; margin: 8px; font-size:100%");
+    btn.setAttribute("style","color: white; text-align: center; background-color: red; padding: 4px 30px 4px 8px; margin: 10px; font-size:100%");
     for (key in element) {
       let cell = row.insertCell();
+      let cell2 = row.insertCell();
       let i = 1;
       btn.innerHTML = "Remove";
       btn.onclick= function(){myDeleteFunction(i)};
       let text = document.createTextNode(element[key]);
       cell.appendChild(text);
-      cell.appendChild(btn);
+      cell2.appendChild(btn);
     }
   }
 }
