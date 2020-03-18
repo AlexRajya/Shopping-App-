@@ -781,6 +781,7 @@ table tf{
 
 table tr:nth-child(odd) td {
   background-color: #e7edf0;
+  color: black;
 }
 
 .basket{
