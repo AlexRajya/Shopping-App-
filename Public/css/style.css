@@ -752,7 +752,7 @@ width: 100%;
 	padding: 8em;
 }
 
-*basket page table*/
+/*basket page table*/
 .container {
   position: relative;
   top: 100px;
@@ -803,15 +803,6 @@ table tr:nth-child(even) td {
 table tr:nth-child(odd) button {
   box-shadow:  0.5px 0.5px 0.5px  black;
 }
-.basket{
-
-}
-.image { float: left; width: 20%; color: rgb(255, 255, 255); }
-.details { float: left; width: 37%; color: rgb(255, 255, 255); }
-.price { float: left; width: 12%; color: rgb(255, 255, 255); }
-.quantity { float: left; width: 10%; color: rgb(255, 255, 255); }
-.removal { float: left; width: 9%; color: rgb(255, 255, 255); }
-.total { float: left; width: 12%; text-align: right; color: rgb(255, 255, 255); }
 
 
 
