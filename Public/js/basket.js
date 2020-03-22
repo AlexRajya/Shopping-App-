@@ -112,16 +112,21 @@ function generateTable(table, data) {
   for (let element of data) {
     let row = table.insertRow();
     let btn = document.createElement("button");
-    btn.setAttribute("style","color: white; text-align: center; background-color: red; padding: 4px 30px 4px 8px; margin: 10px; font-size:100%");
+    let pic = document.createElement("img");
+     btn.setAttribute("style","color: white; text-align: center; background-color: red; padding: 4px 30px 4px 8px; margin: 10px; font-size:100% ");
     for (key in element) {
       let cell = row.insertCell();
       let cell2 = row.insertCell();
       let i = 1;
       btn.innerHTML = "Remove";
       btn.onclick= function(){myDeleteFunction(i)};
-      let text = document.createTextNode(element[key]);
+      let text = document.createElement("p");
+      text.innerHTML=element["info"];
+      pic.src= element["img"];
       cell.appendChild(text);
+      cell.appendChild(pic);
       cell2.appendChild(btn);
+
     }
   }
 }
