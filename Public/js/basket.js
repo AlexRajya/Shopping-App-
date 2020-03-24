@@ -87,8 +87,25 @@ function onSignIn(googleUser) {
 }
 
 
-function myDeleteFunction(r) {
+function myDeleteFunction(r,e) {
+  let itemInfo = {
+    info: e.target.parentElement.parentElement.children[2].children[0].textContent,
+    img: e.target.parentElement.parentElement.children[2].children[1].src
+  }
+  sendDeleteInfo(itemInfo);
   document.getElementById("basketTable").deleteRow(r);
+}
+
+function sendDeleteInfo(itemInfo){
+  let body = {
+    user: currentUser,
+    itemInfo: itemInfo,
+  };
+  const url = `http://localhost:8080/deleteInfo`;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.send(JSON.stringify(body));
 }
 
 function emptyBasket(){
@@ -119,7 +136,7 @@ function generateTable(table, data) {
       let cell2 = row.insertCell();
       let i = 1;
       btn.innerHTML = "Remove";
-      btn.onclick= function(){myDeleteFunction(i)};
+      btn.onclick= function(e){myDeleteFunction(i,e)};
       let text = document.createElement("p");
       text.innerHTML=element["info"];
       pic.src= element["img"];
