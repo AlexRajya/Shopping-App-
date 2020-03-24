@@ -755,7 +755,6 @@ width: 100%;
 /*basket page table*/
 .container {
   position: relative;
-  top: 100px;
 }
 .container img{
 	height: 150px;
@@ -766,8 +765,6 @@ table {
   width: 100%;
   height: 0%;
   position: center;
-  top: 50px;
-  left: 500px;
 }
 
 td{
