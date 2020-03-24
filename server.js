@@ -37,6 +37,18 @@ app.post('/pinfo', (req, res) => {
   }
 });
 
+app.post('/deleteInfo', (req, res) => {
+  try {
+    let itemInfo = (req.body).itemInfo;
+    let user = (req.body).user;
+    deleteProduct(itemInfo, user);
+    res.sendStatus(200);// OK
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(400);// bad request
+  }
+});
+
 // start the server
 server.listen(port, () => {
   console.log('Server started on:', `http://${ip.address()}:${port}`, 'or: http://localhost:8080/');
@@ -58,6 +70,21 @@ function loadUser(email){
     fs.writeFileSync('basketData.txt', JSON.stringify(data));
   }
   //
+}
+
+function deleteProduct(itemInfo, user){
+  let data = fs.readFileSync('basketData.txt', 'utf8')
+  data = JSON.parse(data);
+  for (let i = 0; i < data.user.length; i += 1) {
+    if (data.user[i] === user) {
+      for (let x = 0; x < data.basket[i].length; x += 1){
+        if ((data.basket[i])[x].img === itemInfo.img){
+          (data.basket[i]).splice(x,1)
+        }
+      }
+    }
+  }
+  fs.writeFileSync('basketData.txt', JSON.stringify(data));
 }
 
 function saveProduct(itemInfo, user){
