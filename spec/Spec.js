@@ -5,17 +5,17 @@ let tresponse = {};
 let aresponse = {};
 
 describe("Test APIs", () =>{
-  beforeEach( () {let result = false;});
+  beforeEach( function() {let result = false;});
 
   var objectConstructor
 
-  it("should be a JSON", () =>{
+  it("for BestBuy", () =>{
     objectConstructor = ({}).constructor;
     if (bbresponse.constructor === objectConstructor){
       result = true;
     }
     expect(result).toBe(true);
-  })
+  });
 
   it("for tesco", () =>{
     objectConstructor = ({}).constructor;
@@ -23,7 +23,7 @@ describe("Test APIs", () =>{
       result = true;
     }
     expect(result).toBe(true);
-  })
+  });
 
   it("for Asda", () =>{
     objectConstructor = ({}).constructor;
@@ -31,8 +31,8 @@ describe("Test APIs", () =>{
       result = true;
     }
     expect(result).toBe(true);
-  })
-})
+  });
+});
 
 describe("Add to basket", () =>{
   it("should add item to basket", () =>{
@@ -42,28 +42,48 @@ describe("Add to basket", () =>{
     }
     //add product to basket
     //expect(basket.basket.length).tobe(1);
-  })
-})
+  });
+});
 
 describe("Empty basket", () =>{
   it("should clear the basket", () =>{
-    emptyBasket();
-    expect(document.getElementById("basketTable")).tobe(null);
-  })
-})
+    var ebasket = new emptyBasket();
+    expect(ebasket.document.getElementById("basketTable")).tobe(null);
+  });
+});
 
 describe("Load basket", () =>{
   it("should load the contents of the basket", () =>{
     loadBasket();
-    expect(loadBasket().basket[]).not.toBe(null);
-  })
-})
+    expect(loadBasket().basket[0]).not.toEqual(null);
+  });
+});
+
+/*
+describe("Test admin login", () =>{
+
+  it("should test the function test", async (done) => {
+      var index = new login();
+      abc.test();
+      expect( await abc.someVariable).toBe('new value');  // await will wait until abc.someVariable resolved or rejected
+  });
+});
+*/
+
 
 describe("Test admin login", () =>{
-  it("should login", () =>{
-    let users.username[0] = "admin",
-    let users.password[0] = "1234";
-    expect(users.username[0]).toBe("admin");
-    expect(users.password[0]).toBe("1234");
-  })
-})
+  beforeEach(async function() {
+    v
+    const response = await fetch('users.txt');
+    const text = await response.text();
+    const users = JSON.parse(text);
+});
+
+  it("should test the function test", async (done) => {
+    var loginText = "admin";
+    var passwordText = "1234";
+    expect(users.username[0]).toBe(loginText);
+    expect(users.password[0]).toBe(passwordText);
+});
+
+});
