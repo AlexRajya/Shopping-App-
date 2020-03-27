@@ -15,12 +15,12 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//post requests
+//post requests - Alex
 app.post('/register', (req, res) => {
   try {
     let userEmail = (req.body).email;
     let userPass = (req.body).password;
-    newUser(userEmail,userPass);
+    newUser(userEmail,userPass);//add new user
     res.sendStatus(200);// OK
   } catch (err) {
     res.sendStatus(400);// bad request
@@ -30,7 +30,7 @@ app.post('/register', (req, res) => {
 app.post('/glogin', (req, res) => {
   try {
     let userEmail = (req.body).token;
-    loadUser(userEmail);
+    loadUser(userEmail);//Add user to basket file
     res.sendStatus(200);// OK
   } catch (err) {
     res.sendStatus(400);// bad request
@@ -41,7 +41,7 @@ app.post('/pinfo', (req, res) => {
   try {
     let itemInfo = (req.body).itemInfo;
     let user = (req.body).user;
-    saveProduct(itemInfo, user);
+    saveProduct(itemInfo, user);//Save product to basket file
     res.sendStatus(200);// OK
   } catch (err) {
     res.sendStatus(400);// bad request
@@ -52,7 +52,7 @@ app.post('/deleteInfo', (req, res) => {
   try {
     let itemInfo = (req.body).itemInfo;
     let user = (req.body).user;
-    deleteProduct(itemInfo, user);
+    deleteProduct(itemInfo, user);//Remove product from basket file
     res.sendStatus(200);// OK
   } catch (err) {
     console.log(err);
@@ -64,7 +64,10 @@ app.post('/deleteInfo', (req, res) => {
 server.listen(port, () => {
   console.log('Server started on:', `http://${ip.address()}:${port}`, 'or: http://localhost:8080/');
 });
+
 //server functions
+
+//Add new user to files
 function newUser(email,password){
   let basket = JSON.parse(fs.readFileSync('basketData.txt', 'utf8'));
   let users = JSON.parse(fs.readFileSync('users.txt', 'utf8'));
@@ -78,6 +81,7 @@ function newUser(email,password){
   fs.writeFileSync('users.txt', JSON.stringify(users));
 }
 
+//Check if user already exists, if not add to file
 function loadUser(email){
   let data = fs.readFileSync('basketData.txt', 'utf8')
   data = JSON.parse(data);
@@ -96,21 +100,23 @@ function loadUser(email){
   //
 }
 
+//remove product from basket file
 function deleteProduct(itemInfo, user){
   let data = fs.readFileSync('basketData.txt', 'utf8')
   data = JSON.parse(data);
-  for (let i = 0; i < data.user.length; i += 1) {
+  for (let i = 0; i < data.user.length; i += 1) {//Check user's list of products
     if (data.user[i] === user) {
       for (let x = 0; x < data.basket[i].length; x += 1){
         if ((data.basket[i])[x].img === itemInfo.img){
-          (data.basket[i]).splice(x,1)
+          (data.basket[i]).splice(x,1)//when match is found, delete from list
         }
       }
     }
   }
-  fs.writeFileSync('basketData.txt', JSON.stringify(data));
+  fs.writeFileSync('basketData.txt', JSON.stringify(data));//Save updated content
 }
 
+//add product to current user's basket list
 function saveProduct(itemInfo, user){
   let data = fs.readFileSync('basketData.txt', 'utf8')
   data = JSON.parse(data);
@@ -121,6 +127,7 @@ function saveProduct(itemInfo, user){
   }
   fs.writeFileSync('basketData.txt', JSON.stringify(data));
 }
+
 //create files with default values if none exists
 fs.exists('users.txt', function(exists) {
   if (!exists) {
