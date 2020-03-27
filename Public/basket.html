@@ -18,45 +18,42 @@
  	  <script src="js/basket.js" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span id="loginClose" class="close">&times;</span>
-          <span><h2>Login:</h2><span>
-        </div>
-        <div class="modal-body">
-          <p><label for="uname"><b>Username</b></label></p>
-          <p><input type="text" id="loginText" placeholder="Enter Username" name="uname" required></p>
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="loginClose" class="close">&times;</span>
+        <span><h2>Login:</h2><span>
+      </div>
+      <div class="modal-body">
+        <p><label for="uname"><b>Email</b></label></p>
+        <p><input type="text" id="loginText" placeholder="Enter Email" name="uname" required></p>
 
-          <p><label for="psw"><b>Password</b></label></p>
-          <p><input type="password" id="passwordText" placeholder="Enter Password" name="psw" required></p>
-
-          <p><input type="button" id="loginButton" value="Login"></p>
-
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        </div>
+        <p><label for="psw"><b>Password</b></label></p>
+        <p><input type="password" id="passwordText" placeholder="Enter Password" name="psw" required></p>
+        <p><input type="button" id="loginButton" value="Login"></p>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
       </div>
     </div>
+  </div>
 
-    <div id="registerModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span id="registerClose" class="close">&times;</span>
-          <span><h2>Login:</h2><span>
-        </div>
-        <div class="modal-body">
-          <p><label for="uname"><b>Username</b></label></p>
-          <p><input type="text" placeholder="Enter Username" name="uname" required></p>
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="registerClose" class="close">&times;</span>
+        <span><h2>Register:</h2><span>
+      </div>
+      <div class="modal-body">
+        <p><label for="uname"><b>Username</b></label></p>
+        <p><input type="text" placeholder="Enter Username" name="uname" required></p>
 
-          <p><label for="email"><b>Email</b></label></p>
-          <p><input type="text" placeholder="Enter email" name="email" required></p>
+        <p><label for="email"><b>Email</b></label></p>
+        <p><input type="text" id="registerEmail" placeholder="Enter email" name="email" required></p>
 
-          <p><label for="psw"><b>Password</b></label></p>
-          <p><input type="password" placeholder="Enter Password" name="psw" required></p>
-
-          <p><input type="button" id="registerButton" value="Register"></p>
-        </div>
+        <p><label for="psw"><b>Password</b></label></p>
+        <p><input type="password" id="registerPassword" placeholder="Enter Password" name="psw" required></p>
+        <p><input type="button" id="registerButton" value="Register"></p>
       </div>
     </div>
+  </div>
     <div class="wrapper style1">
 
       <!-- Header -->
