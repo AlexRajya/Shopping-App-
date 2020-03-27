@@ -49,11 +49,13 @@ function displayResults(result, vendor){
   for (let i = 1; i < 60; i += 1){
     div = document.createElement('div');
     p = document.createElement('p');
+    p2 = document.createElement('p');
     img = document.createElement('img');
     add = document.createElement('input');
     if (vendor === "BestBuy"){//If bestbuy
       if (i < result.products.length){
-        p.textContent = "BestBuy's "+result.products[i].name + " - Price: Now: £" + result.products[i].salePrice + " Was: £" + result.products[i].regularPrice;
+        p.textContent = "BestBuy's "+result.products[i].name;
+        p2.textContent = "Price: Now: £" + result.products[i].salePrice + " Was: £" + result.products[i].regularPrice;
         img.src = result.products[i].image;
       }else{
         p.textContent = "No item found";
@@ -61,7 +63,8 @@ function displayResults(result, vendor){
       }
     }else if(vendor === "Tesco"){//If Tesco
       if (i < result.length){
-        p.textContent = "Tesco's "+result[i].name + " - Price: £" + (result[i].price).toFixed(2);
+        p.textContent = "Tesco's "+result[i].name;
+        p2.textContent = "Price: £" + (result[i].price).toFixed(2);
         img.src = result[i].image;
       }else{
         p.textContent = "No item found";
@@ -69,7 +72,8 @@ function displayResults(result, vendor){
       }
     }else{
       if (i < result.length){
-        p.textContent = "Asda's "+result[i].skuName + " - Price: " + result[i].price;
+        p.textContent = "Asda's "+result[i].skuName;
+        p2.textContent = "Price: " + result[i].price;
         img.src = "https://ui.assets-asda.com"+result[i].extraLargeImageURL;
       }else{
         p.textContent = "No item found";
@@ -85,6 +89,7 @@ function displayResults(result, vendor){
 
     div.appendChild(img);
     div.appendChild(p);
+    div.appendChild(p2);
     div.appendChild(add);
     resultArea.appendChild(div);
   }
@@ -93,13 +98,13 @@ function displayResults(result, vendor){
 function addToBasket(e){
   let element = e.target.parentElement;
   let itemInfo = {
-    info: undefined,
+    info: "",
     img: undefined,
   }
 
   for (let i = 0; i < element.children.length; i+=1){
     if (element.children[i].tagName === 'P'){
-      itemInfo.info = element.children[i].textContent;
+      itemInfo.info = itemInfo.info+" - "+element.children[i].textContent;
     }else if(element.children[i].tagName === 'IMG'){
       itemInfo.img = element.children[i].src;
     }

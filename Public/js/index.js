@@ -53,12 +53,14 @@ function displayResults(result1, result2, result3){
   for (let i = 1; i < 60; i += 1){
     div = document.createElement('div');
     p = document.createElement('p');
+    p2 = document.createElement('p');
     img = document.createElement('img');
     add = document.createElement('input');
     if (i % 3 === 1){//If bestbuy
       bestCount += 1;
       if (bestCount < result2.products.length){
-        p.textContent = "BestBuy's "+result2.products[bestCount].name + " - Price: £" + result2.products[bestCount].salePrice;
+        p.textContent = "BestBuy's "+result2.products[bestCount].name;
+        p2.textContent = "Price: £" + result2.products[bestCount].salePrice;
         img.src = result2.products[bestCount].image;
       }else{
         p.textContent = "No item found";
@@ -67,7 +69,8 @@ function displayResults(result1, result2, result3){
     }else if(i % 3 === 2){//If Tesco
       tescoCount += 1;
       if (tescoCount < result1.length){
-        p.textContent = "Tesco's "+result1[tescoCount].name + " - Price: £" + (result1[tescoCount].price).toFixed(2);
+        p.textContent = "Tesco's "+result1[tescoCount].name ;
+        p2.textContent = "Price: £" + (result1[tescoCount].price).toFixed(2);
         img.src = result1[tescoCount].image;
       }else{
         p.textContent = "No item found";
@@ -76,7 +79,8 @@ function displayResults(result1, result2, result3){
     }else{
       asdaCount += 1;
       if (asdaCount < result3.length){
-        p.textContent = "Asda's "+result3[asdaCount].skuName + " - Price: " + result3[asdaCount].price;
+        p.textContent = "Asda's "+result3[asdaCount].skuName;
+        p2.textContent = "Price: " + result3[asdaCount].price;
         img.src = "https://ui.assets-asda.com"+result3[asdaCount].extraLargeImageURL;
       }else{
         p.textContent = "No item found";
@@ -92,6 +96,7 @@ function displayResults(result1, result2, result3){
 
     div.appendChild(img);
     div.appendChild(p);
+    div.appendChild(p2);
     div.appendChild(add);
     resultArea.appendChild(div);
   }
@@ -100,13 +105,13 @@ function displayResults(result1, result2, result3){
 function addToBasket(e){
   let element = e.target.parentElement;
   let itemInfo = {
-    info: undefined,
+    info: "",
     img: undefined,
   }
 
   for (let i = 0; i < element.children.length; i+=1){
     if (element.children[i].tagName === 'P'){
-      itemInfo.info = element.children[i].textContent;
+      itemInfo.info = itemInfo.info+" - "+element.children[i].textContent;
     }else if(element.children[i].tagName === 'IMG'){
       itemInfo.img = element.children[i].src;
     }
