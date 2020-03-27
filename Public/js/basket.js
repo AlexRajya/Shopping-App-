@@ -1,3 +1,4 @@
+//Initialise 
 window.onload = () => {
   //Login modal listeners
   document.getElementById('login').addEventListener('click', () => {
@@ -30,7 +31,7 @@ window.onload = () => {
 };
 
 let currentUser;
-
+//Load basket data and display it on the page 
 async function loadBasket(){
   if(currentUser !== undefined){
     const response = await fetch('basketData.txt');
@@ -45,7 +46,7 @@ async function loadBasket(){
     }
   }
 }
-
+//load users file and compare input to verify login 
 async function login(){
   const response = await fetch('users.txt');
   const text = await response.text();
@@ -65,7 +66,7 @@ async function login(){
     }
   }
 }
-
+//send new user data to server for validation 
 function register(){
   const emailText = document.getElementById('registerEmail').value;
   const passwordText = document.getElementById('registerPassword').value;
@@ -83,7 +84,7 @@ function register(){
     document.getElementById('registerButton').value = "Registered";
   }
 }
-
+//send server who signed in with google 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId());
@@ -102,7 +103,7 @@ function onSignIn(googleUser) {
   loadBasket();
 }
 
-
+//delete pressed row of basket 
 function myDeleteFunction(r,e) {
   let itemInfo = {
     info: e.target.parentElement.parentElement.children[2].children[0].textContent,
@@ -111,7 +112,7 @@ function myDeleteFunction(r,e) {
   sendDeleteInfo(itemInfo);
   document.getElementById("basketTable").deleteRow(r);
 }
-
+//send which item was deleted to server to remove it from the basket save file
 function sendDeleteInfo(itemInfo){
   let body = {
     user: currentUser,
@@ -123,11 +124,11 @@ function sendDeleteInfo(itemInfo){
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(body));
 }
-
+//Empty entire basket 
 function emptyBasket(){
   document.getElementById("basketTable").remove();
 }
-
+//Generate the top row of the table 
 function generateTableHead(table, data) {
   let thead = table.createTHead();
   let row = thead.insertRow();
@@ -140,7 +141,7 @@ function generateTableHead(table, data) {
     row.appendChild(th2);
   }
 }
-
+//Create the table 
 function generateTable(table, data) {
   for (let element of data) {
     let row = table.insertRow();
