@@ -50,10 +50,10 @@ function displayResults(result, vendor){
     div = document.createElement('div');
     p = document.createElement('p');
     img = document.createElement('img');
-    add = document.createElement('button');
+    add = document.createElement('input');
     if (vendor === "BestBuy"){//If bestbuy
       if (i < result.products.length){
-        p.textContent = result.products[i].name + " - Price: Now: £" + result.products[i].salePrice + " Was: £" + result.products[i].regularPrice;
+        p.textContent = "BestBuy's "+result.products[i].name + " - Price: Now: £" + result.products[i].salePrice + " Was: £" + result.products[i].regularPrice;
         img.src = result.products[i].image;
       }else{
         p.textContent = "No item found";
@@ -61,7 +61,7 @@ function displayResults(result, vendor){
       }
     }else if(vendor === "Tesco"){//If Tesco
       if (i < result.length){
-        p.textContent = result[i].name + " - Price: £" + (result[i].price).toFixed(2);
+        p.textContent = "Tesco's "+result[i].name + " - Price: £" + (result[i].price).toFixed(2);
         img.src = result[i].image;
       }else{
         p.textContent = "No item found";
@@ -69,7 +69,7 @@ function displayResults(result, vendor){
       }
     }else{
       if (i < result.length){
-        p.textContent = result[i].skuName + " - Price: " + result[i].price;
+        p.textContent = "Asda's "+result[i].skuName + " - Price: " + result[i].price;
         img.src = "https://ui.assets-asda.com"+result[i].extraLargeImageURL;
       }else{
         p.textContent = "No item found";
@@ -79,7 +79,8 @@ function displayResults(result, vendor){
     if (done === true){
       break;
     }
-    add.textContent = "Add to basket";
+    add.type = "button";
+    add.value = "Add to basket";
     add.addEventListener('click', addToBasket);
 
     div.appendChild(img);

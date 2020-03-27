@@ -54,7 +54,7 @@ function displayResults(result1, result2, result3){
     div = document.createElement('div');
     p = document.createElement('p');
     img = document.createElement('img');
-    add = document.createElement('button');
+    add = document.createElement('input');
     if (i % 3 === 1){//If bestbuy
       bestCount += 1;
       if (bestCount < result2.products.length){
@@ -86,7 +86,8 @@ function displayResults(result1, result2, result3){
     if (tescoDone === true && bestDone === true && asdaDone === true){
       break;
     }
-    add.textContent = "Add to basket";
+    add.type = "button";
+    add.value = "Add to basket";
     add.addEventListener('click', addToBasket);
 
     div.appendChild(img);
