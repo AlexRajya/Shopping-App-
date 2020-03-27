@@ -16,7 +16,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //post requests
-app.post('/login', (req, res) => {
+app.post('/register', (req, res) => {
+  try {
+    let userEmail = (req.body).email;
+    let userPass = (req.body).password;
+    newUser(userEmail,userPass);
+    res.sendStatus(200);// OK
+  } catch (err) {
+    res.sendStatus(400);// bad request
+  }
+});
+
+app.post('/glogin', (req, res) => {
   try {
     let userEmail = (req.body).token;
     loadUser(userEmail);
@@ -54,6 +65,19 @@ server.listen(port, () => {
   console.log('Server started on:', `http://${ip.address()}:${port}`, 'or: http://localhost:8080/');
 });
 //server functions
+function newUser(email,password){
+  let basket = JSON.parse(fs.readFileSync('basketData.txt', 'utf8'));
+  let users = JSON.parse(fs.readFileSync('users.txt', 'utf8'));
+  //Add user to basket file
+  basket.user.push(email);
+  basket.basket.push([]);
+  fs.writeFileSync('basketData.txt', JSON.stringify(basket));
+  //Add user to user's file
+  users.username.push(email);
+  users.password.push(password);
+  fs.writeFileSync('users.txt', JSON.stringify(users));
+}
+
 function loadUser(email){
   let data = fs.readFileSync('basketData.txt', 'utf8')
   data = JSON.parse(data);
