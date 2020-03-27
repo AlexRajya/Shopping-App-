@@ -470,7 +470,7 @@
 		.button.medium {
 			padding: 0.80em 2em;
 			font-size: 1.6em;
-			
+
 		width: 100%;
 		text-align: center;
 		display: inline-block;
@@ -624,7 +624,7 @@
 		text-align: center;
 		border-radius: 0px 0px 6px 6px;
 	}
-	
+
 div {
     vertical-align:middle;
     white-space: nowrap;
@@ -743,7 +743,7 @@ div {
 }
 /* End of modal */
 .productTable  {
-	font-size: 120%
+	font-size: 120%;
 	font-family: sans-serif;
 
 	color: white;
@@ -797,18 +797,14 @@ table tf{
 
 }
 
-table tr:nth-child(odd) td {
+table tr td {
   background-color: #e7edf0;
   color: black;
 	text-shadow: 0.2px 0.2px black;
 	font-size: 110%;
 }
-table tr:nth-child(even) td {
-  background-color: inherit;
-  color: white;
-	font-size: 110%;
-}
-table tr:nth-child(odd) button {
+
+table tr button {
   box-shadow:  0.5px 0.5px 0.5px  black;
 }
 
