@@ -1,4 +1,4 @@
-// Initialise
+//Get API response based on search query from each API
 async function getFromAPIs(search){
   //tesco
   const tesco = await fetch( "https://dev.tescolabs.com/grocery/products/?query="+search+"&offset=0&limit=13&", {
@@ -24,6 +24,7 @@ async function getFromAPIs(search){
   displayResults(result1, result2, result3);
 }
 
+//Display results to the HTML page
 function displayResults(result1, result2, result3){
   result1 = result1.uk.ghs.products.results;
   result3 = result3.payload.autoSuggestionItems;
@@ -49,7 +50,7 @@ function displayResults(result1, result2, result3){
   let bestDone = false;
   let tescoDone = false;
   let asdaDone = false;
-
+  //Loop to display all results and arrange them in a column per vendor
   for (let i = 1; i < 60; i += 1){
     div = document.createElement('div');
     p = document.createElement('p');
@@ -76,7 +77,7 @@ function displayResults(result1, result2, result3){
         p.textContent = "No item found";
         tescoDone = true;
       }
-    }else{
+    }else{//If asda
       asdaCount += 1;
       if (asdaCount < result3.length){
         p.textContent = "Asda's "+result3[asdaCount].skuName;
@@ -101,7 +102,7 @@ function displayResults(result1, result2, result3){
     resultArea.appendChild(div);
   }
 }
-
+//retrieve item pressed and convert into JSON format
 function addToBasket(e){
   let element = e.target.parentElement;
   let itemInfo = {
@@ -121,7 +122,7 @@ function addToBasket(e){
     sendPInfo(itemInfo);
   }
 }
-
+//Send product info to server to be added to basket file 
 function sendPInfo(itemInfo){
   let body = {
     user: currentUser,
@@ -134,6 +135,7 @@ function sendPInfo(itemInfo){
   xhr.send(JSON.stringify(body));
 }
 
+// Initialise
 window.onload = () => {
   try{
     document.getElementById('submitButton').addEventListener('click', () => {
@@ -177,7 +179,7 @@ window.onload = () => {
 };
 
 let currentUser;
-
+//Checks against user's file to validate login 
 async function login(){
   const response = await fetch('users.txt');
   const text = await response.text();
@@ -196,7 +198,7 @@ async function login(){
     }
   }
 }
-
+//Sends new user data to server for validation 
 function register(){
   const emailText = document.getElementById('registerEmail').value;
   const passwordText = document.getElementById('registerPassword').value;
@@ -214,7 +216,7 @@ function register(){
     document.getElementById('registerButton').value = "Registered";
   }
 }
-
+//Sends server info on who signed in using google sign in API
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId());
