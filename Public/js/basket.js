@@ -55,8 +55,10 @@ async function login(){
   for (let i = 0; i < users.username.length; i += 1) {
     if (users.username[i] === loginText) {
       if(users.password[i] === passwordText){
+        document.getElementById('loginButton').value = "Signed In";
         console.log("Successful login");
         currentUser = loginText;
+        loadBasket;
       }else{
         console.log("invalid login");
       }
@@ -65,7 +67,21 @@ async function login(){
 }
 
 function register(){
-  //todo
+  const emailText = document.getElementById('registerEmail').value;
+  const passwordText = document.getElementById('registerPassword').value;
+  if (emailText !== undefined && passwordText !== undefined){
+    let newUser = {
+      email: emailText,
+      password: passwordText
+    }
+    const url = `http://localhost:8080/register`;
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(JSON.stringify(newUser));
+    currentUser = emailText;
+    document.getElementById('registerButton').value = "Registered";
+  }
 }
 
 function onSignIn(googleUser) {
