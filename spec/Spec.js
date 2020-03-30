@@ -1,3 +1,4 @@
+//NOTE: Not all tests will pass until the main application is run at least once 
 const fs = require('fs')
 
 ////////////////////CHECK FILES//////////////////////////////////////
