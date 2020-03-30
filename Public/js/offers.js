@@ -1,4 +1,5 @@
 // Initialise
+//Get results from API - Alex
 async function getFromAPIs(search, vendor){
   //tesco
   let result;
@@ -29,6 +30,7 @@ async function getFromAPIs(search, vendor){
   displayResults(result, vendor);
 }
 
+//Display results to the HTML page
 function displayResults(result, vendor){
   let resultArea = document.getElementById('results');
   resultArea.innerHTML = '';
@@ -95,6 +97,7 @@ function displayResults(result, vendor){
   }
 }
 
+//Put selected item into JSON format then call send function 
 function addToBasket(e){
   let element = e.target.parentElement;
   let itemInfo = {
@@ -114,7 +117,7 @@ function addToBasket(e){
     sendPInfo(itemInfo);
   }
 }
-
+//Send item to server for saving
 function sendPInfo(itemInfo){
   let body = {
     user: currentUser,
@@ -127,6 +130,7 @@ function sendPInfo(itemInfo){
   xhr.send(JSON.stringify(body));
 }
 
+//set event listeners on load 
 window.onload = () => {
   document.getElementById('vendors').value = "BestBuy";
   try{
@@ -171,7 +175,7 @@ window.onload = () => {
 };
 
 let currentUser;
-
+//Check DB to validate login 
 async function login(){
   const response = await fetch('users.txt');
   const text = await response.text();
@@ -191,6 +195,7 @@ async function login(){
   }
 }
 
+//Send new user data to server for validation 
 function register(){
   const emailText = document.getElementById('registerEmail').value;
   const passwordText = document.getElementById('registerPassword').value;
@@ -209,6 +214,7 @@ function register(){
   }
 }
 
+//Google sign in data is sent to server for validation 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId());
